@@ -27,13 +27,41 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration:CustomInputDecoration('Email'),
+                      decoration: CustomInputDecoration('Email'),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      decoration:CustomInputDecoration ('Password'),
+                      decoration: CustomInputDecoration('Password'),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: 
+                      double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          
+                          
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.send, size: 20),
+                            SizedBox(width: 8), // Spacing between icon and text
+                            Text("Login",style:TextStyle(color: Colors.black),),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
