@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: "Task Manager",
       debugShowCheckedModeBanner: false,
-      initialRoute: '/setPassword',
+      initialRoute: '/pinVerification',
       routes: {
       '/':(context)=> SplashScreen(),
       '/login':(context)=> LoginScreen(),

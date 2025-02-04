@@ -56,6 +56,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20),
+                    SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Have Account? ',
+                            style: Head6Text(Colors.black),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print("Sign in tapped");
+                              // Add navigation logic here
+                            },
+                            child: Text(
+                              'Sign in',
+                              style:  Head6Text(Colors.green),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
