@@ -45,14 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: ElevatedButton(
                         
                         onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          
-                          
-                        ),
+                        style:  AppButtonStyle(),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

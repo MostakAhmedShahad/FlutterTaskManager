@@ -1,9 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+const colorRed = Color.fromRGBO(235, 28, 36, 1);
+const colorGreen = Color.fromRGBO(33, 191, 115, 1);
+const colorWhite = Color.fromRGBO(255, 255, 255, 1);
+const colorDarkBlue = Color.fromRGBO(44, 62, 80, 1);
 
 TextStyle ScreenTittleTextStyle = const TextStyle(
-    fontSize: 24, fontWeight: FontWeight.w600, color: Colors.black);
+    fontSize: 34, fontWeight: FontWeight.w900, color: Colors.black);
 
-InputDecoration CustomInputDecoration(hintText ) {
+TextStyle Head1Text(textColor) {
+  return TextStyle(
+    color:textColor,
+    
+    fontSize: 28,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w700,
+  );
+}
+
+TextStyle Head6Text(textColor ) {
+  return TextStyle(
+    color: textColor,
+    fontSize: 14,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w400,
+  );
+}
+
+InputDecoration CustomInputDecoration(hintText) {
   return InputDecoration(
     hintText: hintText,
     filled: true,
@@ -20,3 +45,49 @@ InputDecoration CustomInputDecoration(hintText ) {
     ),
   );
 }
+
+ButtonStyle AppButtonStyle() {
+  return ElevatedButton.styleFrom(
+    backgroundColor: Colors.green,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5),
+    ),
+  );
+}
+
+TextStyle ButtonTextStyle (){
+  return TextStyle (
+    fontSize: 14,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w400
+
+  );
+
+}
+
+void SuccessToast(msg){
+  Fluttertoast.showToast(
+     msg:msg,
+  gravity :ToastGravity.BOTTOM,
+  timeInSecForIosWeb: 1,
+  toastLength: Toast.LENGTH_SHORT,
+  backgroundColor: colorGreen,
+  fontSize: 16
+
+  );
+ 
+}
+
+void ErrorToast(msg){
+  Fluttertoast.showToast(
+     msg:msg,
+  gravity :ToastGravity.BOTTOM,
+  timeInSecForIosWeb: 1,
+  toastLength: Toast.LENGTH_SHORT,
+  backgroundColor: colorRed,
+  fontSize: 16
+
+  );
+ 
+}
+
