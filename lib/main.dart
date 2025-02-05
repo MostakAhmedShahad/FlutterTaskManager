@@ -18,12 +18,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  void myy(){
+    print('hi');
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Task Manager",
       debugShowCheckedModeBanner: false,
-      initialRoute: '/pinVerification',
+      initialRoute: '/login',
       routes: {
       '/':(context)=> SplashScreen(),
       '/login':(context)=> LoginScreen(),

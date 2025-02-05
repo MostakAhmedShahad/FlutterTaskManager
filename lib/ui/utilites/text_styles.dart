@@ -104,7 +104,7 @@ PinTheme AppOTPstyle(){
     borderRadius: BorderRadius.circular(5),
     fieldHeight: 50,
     borderWidth: .5,
-    fieldWidth: 60,
+    fieldWidth: 45,
     activeFillColor: Colors.white
   );
 }
