@@ -1,8 +1,10 @@
 import 'dart:convert';
-
+import 'package:flutter_application_1/api/client_api.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ui/utilites/text_styles.dart';
 import 'package:flutter_application_1/ui/widgets/screen_background_widget.dart';
+ 
 import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,39 +15,38 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final Client httpClient = Client();
+   
 
-  final TextEditingController EmailController = TextEditingController();
-  final TextEditingController PasswordController = TextEditingController();
+ Map<String,String> FormValues={"email":"","password":" "};
+ bool loading=false;
+ InputOnChange(MapKey,Textvalue){
+  setState(() {
+    FormValues.update(MapKey, (value) =>Textvalue);
+  });
+ }
+       
+       FormOnSubmit() async{
 
-  Future<void> loginRequestToAPI() async {
-    Uri uri = Uri.parse('https://task.teamrabbil.com/api/v1/login');
-    var response = await httpClient.post(uri,
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "email": EmailController.text,
-          "password": PasswordController.text,
-        }));
-    print(response.body);
-    print("Status Code: ${response.statusCode}"); // Debugging
-    print("Response Body: ${response.body}"); //
-    if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Post created successfully!"),
-        ),
-      );
-      //setState(() {});
-      // SuccessToast('Request Success!');
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Failed to create post!"),
-        ),
-      );
-      //ErrorToast('Request Success!');
-    }
-  }
+        if(FormValues['email']!.length==0){
+          ErrorToast('Email Required');
+        }
+        else if(FormValues['password']!.length==0){
+          ErrorToast('Password requed');
+
+        }
+        else {
+
+          setState(() {
+            loading=true;
+            
+          });
+           loginRequest(FormValues);
+          setState(() {
+            loading=false;
+            
+          });
+        }
+       }
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +65,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: EmailController,
+                     onChanged: (Textvalue) {
+                      InputOnChange("email", Textvalue);
+                       
+                     },
                       decoration: CustomInputDecoration('Email'),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      controller: PasswordController,
+                      onChanged: (Textvalue) {
+                      InputOnChange("password", Textvalue);
+                       
+                     },
                       decoration: CustomInputDecoration('Password'),
                     ),
                     SizedBox(
@@ -82,16 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (EmailController.text.isEmpty ||
-                              PasswordController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Please fill in all fields!"),
-                              ),
-                            );
-                          } else {
-                            loginRequestToAPI();
-                          }
+                           FormOnSubmit();
                         },
                         style: AppButtonStyle(),
                         child: Row(
